@@ -612,19 +612,23 @@ body {
     color: var(--text-primary);
 }
 
-.consultation-select {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    color: var(--accent);
-    transition: var(--transition-fast);
+.consultation-card:hover {
+    transform: translateY(-12px) scale(1.02);
 }
 
-.consultation-card:hover .consultation-select {
-    gap: 16px;
+.consultation-action {
+    margin-top: auto;
+}
+
+.consultation-action .btn {
+    opacity: 0.9;
+    transition: var(--transition-medium);
+}
+
+.consultation-card:hover .consultation-action .btn {
+    opacity: 1;
+    background: var(--gold);
+    color: white;
 }
 
 
