@@ -234,11 +234,16 @@
             const lastName = formData.get('lastName');
             const email = formData.get('email');
             const phone = formData.get('phone') || 'Not provided';
-            const pkg = formData.get('package');
-            const timezone = formData.get('timezone');
             const message = formData.get('message') || 'No additional message';
 
-            if (!firstName || !lastName || !email || !pkg || !timezone) return;
+            // Get selected date and time from the calendar module
+            const selectedDate = window.calendarModule.getSelectedDate();
+            const selectedTime = window.calendarModule.getSelectedTime();
+
+            if (!firstName || !lastName || !email || !selectedDate || !selectedTime) {
+                alert('Please fill in all required fields and select a date and time.');
+                return;
+            }
 
             const subject = `Virtual Consultation Request from ${firstName} ${lastName}`;
             const body = `Virtual Consultation Request
@@ -247,9 +252,10 @@ Client Details:
 - Name: ${firstName} ${lastName}
 - Email: ${email}
 - Phone: ${phone}
-- Timezone: ${timezone}
 
-Package: ${pkg}
+Appointment Details:
+- Date: ${selectedDate}
+- Time: ${selectedTime}
 
 Style Goals:
 ${message}
