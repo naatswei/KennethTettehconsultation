@@ -1596,6 +1596,7 @@ body {
 }
 
 .calendar-footer .btn {
-    max-width: 300px;
+    max-width: 200px;
     margin: 0 auto;
+    padding: 12px 40px;
 }
