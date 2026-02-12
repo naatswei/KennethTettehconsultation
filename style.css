@@ -1389,3 +1389,35 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* Virtual Appointment Styles */
+.page-header.virtual-appointment {
+    text-align: left;
+}
+
+.page-header.virtual-appointment .page-header-content {
+    max-width: 100%;
+    margin: 0;
+}
+
+.page-header.virtual-appointment .page-icon {
+    display: none;
+}
+
+.appointment-info-card {
+    border: 1px solid var(--border-color);
+    padding: 40px;
+    background: white;
+    margin-top: 32px;
+    width: 100%;
+}
+
+.appointment-info-card p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+.appointment-info-card p:last-child {
+    margin-bottom: 0;
+}
