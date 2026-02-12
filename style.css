@@ -1163,12 +1163,12 @@ body {
 /* Consultation Pages Styles */
 .page-header {
     padding: 160px 0 80px;
-    background: var(--bg-primary);
+    background: white;
     text-align: center;
 }
 
 .page-header.inperson {
-    background: linear-gradient(135deg, var(--bg-primary), #f0ebe5);
+    background: white;
 }
 
 .page-header-content {
