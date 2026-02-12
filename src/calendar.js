@@ -25,6 +25,7 @@ export class Calendar {
         this.prevBtn = document.querySelector('.calendar-nav-btn[aria-label="Previous month"]');
         this.nextBtn = document.querySelector('.calendar-nav-btn[aria-label="Next month"]');
         this.timeSlots = document.querySelectorAll('.time-slot');
+        this.enterBtn = document.getElementById('calendar-enter-btn'); // Added: Cache enter button
         this.slotsHeader = document.querySelector('.slots-header h3');
     }
 
@@ -43,11 +44,19 @@ export class Calendar {
         this.timeSlots.forEach(slot => {
             slot.addEventListener('click', (e) => this.selectTimeSlot(e.target));
         });
+
+        // Enter button
+        if (this.enterBtn) {
+            this.enterBtn.addEventListener('click', () => this.handleEnter());
+        }
     }
 
     render() {
         this.currentMonthEl.textContent = `${this.monthNames[this.currentMonth]} ${this.currentYear}`;
         this.datesEl.innerHTML = '';
+
+        // Disable enter button initially
+        this.updateEnterButtonState(); // Added: Update button state on render
 
         const firstDay = new Date(this.currentYear, this.currentMonth, 1).getDay();
         const daysInMonth = new Date(this.currentYear, this.currentMonth + 1, 0).getDate();
@@ -125,6 +134,7 @@ export class Calendar {
         this.selectedDate = new Date(this.currentYear, this.currentMonth, day);
 
         this.updateHeader(this.selectedDate);
+        this.updateEnterButtonState(); // Added: Update button state after date selection
     }
 
     selectTimeSlot(el) {
@@ -139,11 +149,49 @@ export class Calendar {
 
         // Add selection to clicked slot
         el.classList.add('selected');
+        this.selectedTimeSlot = el.textContent; // Added: Store selected time slot
+        this.updateEnterButtonState(); // Added: Update button state after time selection
     }
 
     updateHeader(date) {
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         this.slotsHeader.textContent = date.toLocaleDateString('en-US', options);
+    }
+
+    // Added: New method to update the state of the Enter button
+    updateEnterButtonState() {
+        if (this.enterBtn) {
+            // Check if both date and time are selected
+            const hasDate = !!this.selectedDate;
+            const hasTime = !!document.querySelector('.time-slot.selected');
+
+            if (hasDate && hasTime) {
+                this.enterBtn.disabled = false;
+                this.enterBtn.style.opacity = '1';
+                this.enterBtn.style.cursor = 'pointer';
+            } else {
+                this.enterBtn.disabled = true;
+                this.enterBtn.style.opacity = '0.5';
+                this.enterBtn.style.cursor = 'not-allowed';
+            }
+        }
+    }
+
+    // Added: New method to handle the Enter button click
+    handleEnter() {
+        if (!this.enterBtn.disabled) {
+            // Check if there is a pricing section or booking form to scroll to
+            const pricingSection = document.querySelector('.pricing-section');
+            if (pricingSection) {
+                pricingSection.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                console.log('Selection Confirmed:', {
+                    date: this.selectedDate,
+                    time: this.selectedTimeSlot
+                });
+                alert(`Appointment Reserved for ${this.selectedDate.toLocaleDateString()} at ${this.selectedTimeSlot}`);
+            }
+        }
     }
 }
 
