@@ -441,6 +441,10 @@ body {
     color: var(--text-primary);
 }
 
+.stylists .section-title {
+    font-size: 1.75rem;
+}
+
 .section-description {
     color: var(--text-secondary);
     line-height: 1.8;
