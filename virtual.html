@@ -123,8 +123,9 @@
     <!-- Booking Form -->
     <section class="booking consultation-booking" id="booking">
         <div class="container">
-            <div class="booking-wrapper" style="max-width: 1200px; margin: 0 auto;">
-                <div class="booking-form-container" style="width: 100%;">
+            <div class="booking-grid-container"
+                style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                <div class="booking-form-container">
                     <form class="booking-form" id="bookingForm" onsubmit="handleVirtualFormSubmit(event)">
                         <div class="form-header">
                             <h3>Book Appointment</h3>
@@ -166,23 +167,10 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <label for="timezone">Your Timezone</label>
-                            <select id="timezone" name="timezone" required class="form-control">
-                                <option value="">Select timezone</option>
-                                <option value="GMT">GMT (London)</option>
-                                <option value="GMT+0">GMT+0 (Accra)</option>
-                                <option value="EST">EST (New York)</option>
-                                <option value="PST">PST (Los Angeles)</option>
-                                <option value="CET">CET (Paris)</option>
-                                <option value="WAT">WAT (Lagos)</option>
-                            </select>
-                        </div>
-
                         <div class="form-group checkbox-wrapper">
                             <input type="checkbox" id="terms" name="terms" required>
-                            <label for="terms">I agree to the <a href="#">Terms & Conditions</a> and <a
-                                    href="#">cancellation policy</a>.</label>
+                            <label for="terms">I agree to the <a href="#legal-info">Terms & Conditions</a> and <a
+                                    href="#legal-info">cancellation policy</a>.</label>
                         </div>
 
                         <div class="form-group">
@@ -200,11 +188,8 @@
                         </button>
                     </form>
                 </div>
-            </div>
 
-            <!-- Legal Info Card (Duplicated Frame) -->
-            <div class="booking-wrapper" style="max-width: 1200px; margin: 40px auto 80px;">
-                <div class="legal-info-card">
+                <div class="legal-info-card" id="legal-info">
                     <h4>Terms & Conditions & Cancellation Policy</h4>
                     <div class="legal-grid">
                         <div class="legal-content">

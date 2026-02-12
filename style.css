@@ -1724,11 +1724,11 @@ body {
     border-radius: 0;
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-sm);
-    margin-top: 40px;
+    height: 100%;
 }
 
 .legal-info-card h4 {
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -1738,9 +1738,15 @@ body {
 }
 
 .legal-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+@media (max-width: 992px) {
+    .booking-grid-container {
+        grid-template-columns: 1fr !important;
+    }
 }
 
 .legal-content h5 {
