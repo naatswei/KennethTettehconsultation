@@ -1592,11 +1592,13 @@ body {
 
 .calendar-footer {
     margin-top: 32px;
-    text-align: center;
+    text-align: right;
 }
 
 .calendar-footer .btn {
+    display: inline-block;
+    width: 100%;
     max-width: 200px;
-    margin: 0 auto;
+    text-align: center;
     padding: 12px 40px;
 }
