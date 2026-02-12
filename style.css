@@ -1589,3 +1589,13 @@ body {
         box-shadow: none;
     }
 }
+
+.calendar-footer {
+    margin-top: 32px;
+    text-align: center;
+}
+
+.calendar-footer .btn {
+    max-width: 300px;
+    margin: 0 auto;
+}

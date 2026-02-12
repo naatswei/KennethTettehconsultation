@@ -26,6 +26,7 @@ export class Calendar {
         this.nextBtn = document.querySelector('.calendar-nav-btn[aria-label="Next month"]');
         this.timeSlots = document.querySelectorAll('.time-slot');
         this.slotsHeader = document.querySelector('.slots-header h3');
+        this.enterBtn = document.getElementById('calendarEnterBtn');
     }
 
     bindEvents() {
@@ -43,6 +44,11 @@ export class Calendar {
         this.timeSlots.forEach(slot => {
             slot.addEventListener('click', (e) => this.selectTimeSlot(e.target));
         });
+
+        // Enter button
+        if (this.enterBtn) {
+            this.enterBtn.addEventListener('click', () => this.handleEnter());
+        }
     }
 
     render() {
@@ -144,6 +150,30 @@ export class Calendar {
     updateHeader(date) {
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         this.slotsHeader.textContent = date.toLocaleDateString('en-US', options);
+    }
+
+    handleEnter() {
+        const selectedDate = this.selectedDate;
+        const selectedSlot = document.querySelector('.time-slot.selected');
+
+        if (!selectedDate) {
+            alert('Please select a date.');
+            return;
+        }
+
+        if (!selectedSlot) {
+            alert('Please select a time slot.');
+            return;
+        }
+
+        // Proceed to booking (scroll to section)
+        const bookingSection = document.getElementById('booking');
+        if (bookingSection) {
+            bookingSection.scrollIntoView({ behavior: 'smooth' });
+
+            // Optional: Pre-fill or store selection (not implemented yet)
+            console.log('Selected:', selectedDate.toLocaleDateString(), selectedSlot.textContent);
+        }
     }
 }
 
