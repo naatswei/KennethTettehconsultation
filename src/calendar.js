@@ -1,0 +1,162 @@
+export class Calendar {
+    constructor() {
+        this.date = new Date();
+        this.selectedDate = null;
+        this.currentMonth = this.date.getMonth();
+        this.currentYear = this.date.getFullYear();
+
+        this.monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        this.init();
+    }
+
+    init() {
+        this.cacheDOM();
+        this.bindEvents();
+        this.render();
+    }
+
+    cacheDOM() {
+        this.currentMonthEl = document.querySelector('.current-month');
+        this.datesEl = document.querySelector('.dates');
+        this.prevBtn = document.querySelector('.calendar-nav-btn[aria-label="Previous month"]');
+        this.nextBtn = document.querySelector('.calendar-nav-btn[aria-label="Next month"]');
+        this.timeSlots = document.querySelectorAll('.time-slot');
+        this.slotsHeader = document.querySelector('.slots-header h3');
+    }
+
+    bindEvents() {
+        this.prevBtn.addEventListener('click', () => this.prevMonth());
+        this.nextBtn.addEventListener('click', () => this.nextMonth());
+
+        // Event delegation for dates
+        this.datesEl.addEventListener('click', (e) => {
+            if (e.target.classList.contains('date') && !e.target.classList.contains('empty') && !e.target.classList.contains('disabled')) {
+                this.selectDate(e.target);
+            }
+        });
+
+        // Time slots
+        this.timeSlots.forEach(slot => {
+            slot.addEventListener('click', (e) => this.selectTimeSlot(e.target));
+        });
+    }
+
+    render() {
+        this.currentMonthEl.textContent = `${this.monthNames[this.currentMonth]} ${this.currentYear}`;
+        this.datesEl.innerHTML = '';
+
+        const firstDay = new Date(this.currentYear, this.currentMonth, 1).getDay();
+        const daysInMonth = new Date(this.currentYear, this.currentMonth + 1, 0).getDate();
+
+        // Adjust for Monday start (0 = Sunday, 1 = Monday ...)
+        // If Sunday (0), it becomes 6. Monday (1) becomes 0.
+        const startDayIndex = firstDay === 0 ? 6 : firstDay - 1;
+
+        // Empty spans for previous month
+        for (let i = 0; i < startDayIndex; i++) {
+            const span = document.createElement('span');
+            span.classList.add('empty');
+            this.datesEl.appendChild(span);
+        }
+
+        // Days
+        const today = new Date();
+        for (let i = 1; i <= daysInMonth; i++) {
+            const span = document.createElement('span');
+            span.classList.add('date');
+            span.textContent = i;
+            span.dataset.date = i;
+
+            // Check if past date
+            const dateToCheck = new Date(this.currentYear, this.currentMonth, i);
+            dateToCheck.setHours(0, 0, 0, 0);
+            const todayReset = new Date();
+            todayReset.setHours(0, 0, 0, 0);
+
+            if (dateToCheck < todayReset) {
+                span.classList.add('disabled');
+            }
+
+            // Check if selected
+            if (this.selectedDate &&
+                this.selectedDate.getDate() === i &&
+                this.selectedDate.getMonth() === this.currentMonth &&
+                this.selectedDate.getFullYear() === this.currentYear) {
+                span.classList.add('selected');
+            }
+
+            this.datesEl.appendChild(span);
+        }
+    }
+
+    prevMonth() {
+        this.currentMonth--;
+        if (this.currentMonth < 0) {
+            this.currentMonth = 11;
+            this.currentYear--;
+        }
+        this.render();
+    }
+
+    nextMonth() {
+        this.currentMonth++;
+        if (this.currentMonth > 11) {
+            this.currentMonth = 0;
+            this.currentYear++;
+        }
+        this.render();
+    }
+
+    selectDate(el) {
+        // Remove previous selection
+        const prevSelected = this.datesEl.querySelector('.selected');
+        if (prevSelected) {
+            prevSelected.classList.remove('selected');
+        }
+
+        el.classList.add('selected');
+
+        // Allow date selection beyond this month/year for logic simplicity (re-rendering handles correctness)
+        const day = parseInt(el.dataset.date);
+        this.selectedDate = new Date(this.currentYear, this.currentMonth, day);
+
+        this.updateHeader(this.selectedDate);
+    }
+
+    selectTimeSlot(el) {
+        // Remove previous selection
+        const prevSelected = document.querySelector('.time-slot.selected'); // scope to document or parent?
+        // Better scope to container if multiple calendars (unlikely)
+        this.timeSlots.forEach(slot => slot.classList.remove('selected'));
+
+        // Add styling for selected state (needs CSS)
+        el.classList.add('selected');
+        // Visual feedback only for now
+        el.style.borderColor = 'var(--text-primary)';
+        el.style.backgroundColor = 'var(--text-primary)';
+        el.style.color = 'white';
+
+        // Reset others (inline styles override class, so needed)
+        this.timeSlots.forEach(slot => {
+            if (slot !== el) {
+                slot.style.borderColor = '';
+                slot.style.backgroundColor = '';
+                slot.style.color = '';
+            }
+        });
+    }
+
+    updateHeader(date) {
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        this.slotsHeader.textContent = date.toLocaleDateString('en-US', options);
+    }
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    new Calendar();
+});
