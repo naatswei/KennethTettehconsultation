@@ -1391,20 +1391,24 @@ body {
 }
 
 /* Virtual Appointment Styles */
-.page-header.virtual-appointment {
+.page-header.virtual-appointment,
+.page-header.inperson {
     text-align: left;
 }
 
-.page-header.virtual-appointment .page-header-content {
+.page-header.virtual-appointment .page-header-content,
+.page-header.inperson .page-header-content {
     max-width: 100%;
     margin: 0;
 }
 
-.page-header.virtual-appointment .page-icon {
+.page-header.virtual-appointment .page-icon,
+.page-header.inperson .page-icon {
     display: none;
 }
 
-.page-header.virtual-appointment .page-title {
+.page-header.virtual-appointment .page-title,
+.page-header.inperson .page-title {
     font-size: 1.2rem;
     font-weight: 700;
 }
