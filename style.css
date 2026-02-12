@@ -1621,15 +1621,14 @@ body {
 .form-header h3 {
     font-size: 1.25rem;
     font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: 24px;
     text-transform: uppercase;
     letter-spacing: 1px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
 }
 
-.form-header p {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-}
+
 
 .form-row {
     display: grid;
