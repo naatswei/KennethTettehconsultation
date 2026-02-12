@@ -1571,6 +1571,12 @@ body {
     border-color: var(--text-primary);
 }
 
+.time-slot.selected {
+    background-color: var(--text-primary);
+    color: white;
+    border-color: var(--text-primary);
+}
+
 @media (max-width: 768px) {
     .calendar-layout {
         grid-template-columns: 1fr;

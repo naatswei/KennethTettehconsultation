@@ -128,26 +128,17 @@ export class Calendar {
     }
 
     selectTimeSlot(el) {
-        // Remove previous selection
-        const prevSelected = document.querySelector('.time-slot.selected'); // scope to document or parent?
-        // Better scope to container if multiple calendars (unlikely)
-        this.timeSlots.forEach(slot => slot.classList.remove('selected'));
-
-        // Add styling for selected state (needs CSS)
-        el.classList.add('selected');
-        // Visual feedback only for now
-        el.style.borderColor = 'var(--text-primary)';
-        el.style.backgroundColor = 'var(--text-primary)';
-        el.style.color = 'white';
-
-        // Reset others (inline styles override class, so needed)
+        // Remove selection from all slots
         this.timeSlots.forEach(slot => {
-            if (slot !== el) {
-                slot.style.borderColor = '';
-                slot.style.backgroundColor = '';
-                slot.style.color = '';
-            }
+            slot.classList.remove('selected');
+            // Remove any inline styles if they exist (cleanup)
+            slot.style.borderColor = '';
+            slot.style.backgroundColor = '';
+            slot.style.color = '';
         });
+
+        // Add selection to clicked slot
+        el.classList.add('selected');
     }
 
     updateHeader(date) {
