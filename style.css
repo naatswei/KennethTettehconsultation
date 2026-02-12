@@ -1404,6 +1404,11 @@ body {
     display: none;
 }
 
+.page-header.virtual-appointment .page-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+}
+
 .appointment-info-card {
     border: 1px solid var(--border-color);
     padding: 40px;
