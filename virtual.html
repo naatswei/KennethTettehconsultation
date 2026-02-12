@@ -123,34 +123,52 @@
     <!-- Booking Form -->
     <section class="booking consultation-booking" id="booking">
         <div class="container">
-            <div class="booking-wrapper" style="max-width: 600px; margin: 0 auto;">
+            <div class="booking-wrapper" style="max-width: 1200px; margin: 0 auto;">
                 <div class="booking-form-container" style="width: 100%;">
                     <form class="booking-form" id="bookingForm" onsubmit="handleVirtualFormSubmit(event)">
                         <div class="form-header">
-                            <h3>Book Virtual Session</h3>
+                            <h3>Secure Your Spot</h3>
+                            <p>Complete your details to proceed to payment.</p>
                         </div>
+
                         <div class="form-row">
-                            <div class="form-group"><label for="firstName">First Name</label><input type="text"
-                                    id="firstName" name="firstName" required placeholder="Your first name"></div>
-                            <div class="form-group"><label for="lastName">Last Name</label><input type="text"
-                                    id="lastName" name="lastName" required placeholder="Your last name"></div>
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" required placeholder="Jane"
+                                    class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required placeholder="Doe"
+                                    class="form-control">
+                            </div>
                         </div>
-                        <div class="form-group"><label for="email">Email Address</label><input type="email" id="email"
-                                name="email" required placeholder="your@email.com"></div>
-                        <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone"
-                                name="phone" placeholder="+233 XXX XXX XXX"></div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="jane@example.com"
+                                class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+233 55 555 5555"
+                                class="form-control">
+                        </div>
+
                         <div class="form-group">
                             <label for="package">Select Package</label>
-                            <select id="package" name="package" required>
+                            <select id="package" name="package" required class="form-control">
                                 <option value="">Choose a package</option>
                                 <option value="essential">Essential - Gh1,500</option>
                                 <option value="premium">Premium - Gh1,500</option>
                                 <option value="elite">Elite - Gh1,500</option>
                             </select>
                         </div>
+
                         <div class="form-group">
                             <label for="timezone">Your Timezone</label>
-                            <select id="timezone" name="timezone" required>
+                            <select id="timezone" name="timezone" required class="form-control">
                                 <option value="">Select timezone</option>
                                 <option value="GMT">GMT (London)</option>
                                 <option value="GMT+0">GMT+0 (Accra)</option>
@@ -160,11 +178,21 @@
                                 <option value="WAT">WAT (Lagos)</option>
                             </select>
                         </div>
-                        <div class="form-group"><label for="message">Style Goals & Preferences</label><textarea
-                                id="message" name="message" rows="4"
-                                placeholder="Tell us about your style goals..."></textarea></div>
-                        <button type="submit" class="btn btn-primary btn-full">
-                            <span>Request Virtual Consultation</span>
+
+                        <div class="form-group checkbox-wrapper">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">I agree to the <a href="#">Terms & Conditions</a> and <a
+                                    href="#">cancellation policy</a>.</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Style Goals & Preferences</label>
+                            <textarea id="message" name="message" rows="4"
+                                placeholder="Tell us about your style goals..." class="form-control"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full btn-payment">
+                            <span>Continue with Payment</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2">
                                 <path d="M5 12h14M12 5l7 7-7 7" />
@@ -176,17 +204,7 @@
         </div>
     </section>
 
-    <!-- Payment Info -->
-    <section class="payment-info-section">
-        <div class="container">
-            <div class="payment-info-box">
-                <h4>Payment Details</h4>
-                <p><strong>Bank:</strong> Stanbic Bank</p>
-                <p><strong>Cedis Account:</strong> 9040009393514</p>
-                <p><strong>Dollar Account:</strong> 9040009863537</p>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Footer -->
     <footer class="footer">
