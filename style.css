@@ -1096,7 +1096,7 @@ body {
     }
 
     .nav-mobile-toggle {
-        display: flex;
+        display: none !important;
     }
 
     .services-grid {
@@ -1598,15 +1598,15 @@ body {
 
 .calendar-footer {
     margin-top: 32px;
-    text-align: right;
+    text-align: center;
 }
 
 .calendar-footer .btn {
     display: inline-block;
-    width: 100%;
-    max-width: 200px;
+    width: auto;
+    min-width: 150px;
     text-align: center;
-    padding: 12px 40px;
+    padding: 12px 32px;
 }
 
 /* Modern Booking Form Styles */
