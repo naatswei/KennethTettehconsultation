@@ -277,6 +277,8 @@ body {
 .btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    text-align: center;
     gap: 10px;
     padding: 16px 32px;
     font-family: var(--font-sans);
