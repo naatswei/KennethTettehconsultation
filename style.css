@@ -1105,12 +1105,19 @@ body {
     .nav-container {
         padding: 0 16px;
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         align-items: center;
+        position: relative;
+        min-height: 50px;
     }
 
     .nav-logo {
         margin-right: 0;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        z-index: 10;
     }
 
     .nav-cta {
@@ -1120,6 +1127,7 @@ body {
         box-shadow: none !important;
         transform: none !important;
         color: var(--text-primary);
+        z-index: 20;
     }
 
     .nav-cta span {
