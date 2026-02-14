@@ -268,7 +268,8 @@ body {
 }
 
 .hero-description {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
+    font-weight: 300;
     color: var(--text-light);
     max-width: 600px;
     margin: 0 auto 40px;
