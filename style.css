@@ -303,15 +303,23 @@ body {
 }
 
 .btn-primary {
-    background: var(--gold);
+    background: var(--accent);
     color: var(--text-light);
 }
 
 .btn-primary:hover {
-    background: var(--gold-dark);
+    background: var(--accent-light);
     color: var(--text-light);
     transform: translateY(-3px);
     box-shadow: var(--shadow-md);
+}
+
+.brand-btn-gold {
+    background: var(--gold) !important;
+}
+
+.brand-btn-gold:hover {
+    background: var(--gold-dark) !important;
 }
 
 .btn-secondary {
