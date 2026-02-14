@@ -1676,6 +1676,7 @@ body {
 
 .calendar-footer {
     text-align: right;
+    margin-top: 32px;
 }
 
 @media (max-width: 768px) {
