@@ -177,6 +177,27 @@ body {
     transition: var(--transition-fast);
 }
 
+/* About Us Section */
+.about {
+    padding: 120px 0;
+    background-color: var(--bg-secondary);
+    text-align: center;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-text {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    line-height: 1.5;
+    color: var(--text-primary);
+    font-style: italic;
+    font-weight: 300;
+}
+
 /* Hero Section */
 .hero {
     position: relative;
