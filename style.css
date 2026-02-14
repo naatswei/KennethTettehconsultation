@@ -1453,19 +1453,26 @@ body {
     text-align: left;
 }
 
+.page-header.about-page-header {
+    text-align: center;
+}
+
 .page-header.virtual-appointment .page-header-content,
-.page-header.inperson .page-header-content {
+.page-header.inperson .page-header-content,
+.page-header.about-page-header .page-header-content {
     max-width: 100%;
     margin: 0;
 }
 
 .page-header.virtual-appointment .page-icon,
-.page-header.inperson .page-icon {
+.page-header.inperson .page-icon,
+.page-header.about-page-header .page-icon {
     display: none;
 }
 
 .page-header.virtual-appointment .page-title,
-.page-header.inperson .page-title {
+.page-header.inperson .page-title,
+.page-header.about-page-header .page-title {
     font-size: 1.2rem;
     font-weight: 700;
 }
@@ -1476,6 +1483,7 @@ body {
     background: white;
     margin-top: 16px;
     margin-bottom: 0;
+    width: 100%;
 }
 
 .appointment-info-card p {
