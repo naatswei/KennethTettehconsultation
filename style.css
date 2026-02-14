@@ -259,7 +259,7 @@ body {
 }
 
 .hero-description {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     color: var(--text-light);
     max-width: 600px;
     margin: 0 auto 40px;
