@@ -1,0 +1,14 @@
+{
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "rewrites": [
+        {
+            "source": "/virtual",
+            "destination": "/virtual.html"
+        },
+        {
+            "source": "/inperson",
+            "destination": "/inperson.html"
+        }
+    ]
+}
