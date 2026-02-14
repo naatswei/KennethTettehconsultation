@@ -316,6 +316,7 @@ body {
 
 .brand-btn-gold {
     background: var(--gold) !important;
+    border-radius: 4px;
 }
 
 .brand-btn-gold:hover {
