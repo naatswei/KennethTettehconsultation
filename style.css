@@ -8,6 +8,7 @@
     --accent: #00011A;
     --accent-light: #1a1b34;
     --gold: #c9a962;
+    --gold-dark: #a88a48;
     --gold-light: #e8d5a8;
     --border-color: rgba(0, 1, 26, 0.1);
     --shadow-sm: 0 2px 8px rgba(0, 1, 26, 0.06);
@@ -301,12 +302,12 @@ body {
 }
 
 .btn-primary {
-    background: var(--accent);
+    background: var(--gold);
     color: var(--text-light);
 }
 
 .btn-primary:hover {
-    background: var(--gold);
+    background: var(--gold-dark);
     color: var(--text-light);
     transform: translateY(-3px);
     box-shadow: var(--shadow-md);
