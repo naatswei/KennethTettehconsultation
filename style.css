@@ -1549,6 +1549,93 @@ body {
     margin-bottom: 0;
 }
 
+/* About Gallery Styles */
+.about-gallery {
+    padding: 100px 0;
+    background: var(--bg-primary);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+    align-items: start;
+}
+
+.gallery-item {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.image-frame {
+    position: relative;
+    padding: 15px;
+    background: white;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-medium);
+}
+
+.image-frame:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.image-frame img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-content {
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.gallery-content h3 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.gallery-content p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+@media (max-width: 992px) {
+    .gallery-grid {
+        gap: 40px;
+    }
+
+    .image-frame img {
+        height: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 80px;
+    }
+
+    .about-gallery {
+        padding: 60px 0;
+    }
+
+    .image-frame img {
+        height: 450px;
+    }
+}
+
 /* Calendar Layout Styles */
 .calendar-section {
     padding: 80px 0;
@@ -1654,6 +1741,18 @@ body {
     cursor: default;
 }
 
+.date.full {
+    color: #ccc;
+    text-decoration: line-through;
+    cursor: not-allowed;
+    background: #f9f9f9;
+}
+
+.date.full:hover {
+    background: #f9f9f9;
+    border-color: var(--border-color);
+}
+
 /* Calendar Right Column */
 .slots-header {
     margin-bottom: 32px;
@@ -1698,6 +1797,20 @@ body {
     background-color: var(--text-primary);
     color: white;
     border-color: var(--text-primary);
+}
+
+.time-slot.booked {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: #eee !important;
+    text-decoration: line-through;
+    border-style: dashed;
+}
+
+.time-slot.booked:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--border-color);
 }
 
 @media (max-width: 768px) {

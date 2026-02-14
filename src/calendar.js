@@ -1,5 +1,8 @@
+import { BookingService } from './booking-data.js';
+
 export class Calendar {
     constructor() {
+        this.bookingService = new BookingService();
         this.date = new Date();
         this.selectedDate = null;
         this.currentMonth = this.date.getMonth();
@@ -71,20 +74,29 @@ export class Calendar {
 
         // Days
         const today = new Date();
+        const availableSlotsCount = this.timeSlots.length;
+
         for (let i = 1; i <= daysInMonth; i++) {
             const span = document.createElement('span');
             span.classList.add('date');
             span.textContent = i;
             span.dataset.date = i;
 
-            // Check if past date
             const dateToCheck = new Date(this.currentYear, this.currentMonth, i);
+            const dateStr = this.bookingService.formatDate(dateToCheck);
+
             dateToCheck.setHours(0, 0, 0, 0);
             const todayReset = new Date();
             todayReset.setHours(0, 0, 0, 0);
 
             if (dateToCheck < todayReset) {
                 span.classList.add('disabled');
+            }
+
+            // Check if all slots are booked for this day
+            const dayBookings = this.bookingService.getBookings().filter(b => b.date === dateStr);
+            if (dayBookings.length >= availableSlotsCount) {
+                span.classList.add('full');
             }
 
             // Check if selected
@@ -118,6 +130,11 @@ export class Calendar {
     }
 
     selectDate(el) {
+        if (el.classList.contains('full')) {
+            alert('Sorry, this date is fully booked. Please select another date.');
+            return;
+        }
+
         // Remove previous selection
         const prevSelected = this.datesEl.querySelector('.selected');
         if (prevSelected) {
@@ -126,21 +143,38 @@ export class Calendar {
 
         el.classList.add('selected');
 
-        // Allow date selection beyond this month/year for logic simplicity (re-rendering handles correctness)
         const day = parseInt(el.dataset.date);
         this.selectedDate = new Date(this.currentYear, this.currentMonth, day);
 
         this.updateHeader(this.selectedDate);
+        this.updateTimeSlotsAvailability();
+    }
+
+    updateTimeSlotsAvailability() {
+        if (!this.selectedDate) return;
+
+        const dateStr = this.bookingService.formatDate(this.selectedDate);
+
+        this.timeSlots.forEach(slot => {
+            const timeStr = slot.textContent.trim();
+            slot.classList.remove('selected');
+
+            if (this.bookingService.isBooked(dateStr, timeStr)) {
+                slot.classList.add('booked');
+                slot.disabled = true;
+            } else {
+                slot.classList.remove('booked');
+                slot.disabled = false;
+            }
+        });
     }
 
     selectTimeSlot(el) {
+        if (el.classList.contains('booked')) return;
+
         // Remove selection from all slots
         this.timeSlots.forEach(slot => {
             slot.classList.remove('selected');
-            // Remove any inline styles if they exist (cleanup)
-            slot.style.borderColor = '';
-            slot.style.backgroundColor = '';
-            slot.style.color = '';
         });
 
         // Add selection to clicked slot
@@ -166,13 +200,20 @@ export class Calendar {
             return;
         }
 
-        // Proceed to booking (scroll to section)
-        const bookingSection = document.getElementById('booking');
-        if (bookingSection) {
-            bookingSection.scrollIntoView({ behavior: 'smooth' });
+        const dateStr = this.bookingService.formatDate(selectedDate);
+        const timeStr = selectedSlot.textContent.trim();
 
-            // Optional: Pre-fill or store selection (not implemented yet)
-            console.log('Selected:', selectedDate.toLocaleDateString(), selectedSlot.textContent);
+        // Simulate booking confirmation
+        if (this.bookingService.addBooking(dateStr, timeStr)) {
+            // Success - Proceed to booking section
+            const bookingSection = document.getElementById('booking');
+            if (bookingSection) {
+                bookingSection.scrollIntoView({ behavior: 'smooth' });
+                console.log('Booked successfully:', dateStr, timeStr);
+            }
+        } else {
+            alert('Sorry, this slot was just taken. Please select another.');
+            this.updateTimeSlotsAvailability();
         }
     }
 }
