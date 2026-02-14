@@ -254,7 +254,7 @@ body {
 
 .hero-title {
     font-family: var(--font-serif);
-    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 400;
     line-height: 1.1;
     margin-bottom: 24px;
@@ -306,7 +306,8 @@ body {
 }
 
 .btn-primary:hover {
-    background: var(--accent-light);
+    background: var(--gold);
+    color: var(--text-light);
     transform: translateY(-3px);
     box-shadow: var(--shadow-md);
 }
