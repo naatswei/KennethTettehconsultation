@@ -934,18 +934,10 @@ body {
 }
 
 .footer-top {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 60px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
     margin-bottom: 60px;
-}
-
-.footer-brand {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .footer-logo {
@@ -956,7 +948,6 @@ body {
     text-decoration: none;
     line-height: 1.1;
     margin-bottom: 16px;
-    justify-content: center;
 }
 
 .footer-logo .logo-text {
@@ -976,7 +967,6 @@ body {
 .footer-social {
     display: flex;
     gap: 16px;
-    justify-content: center;
 }
 
 .footer-social a {
@@ -997,10 +987,8 @@ body {
 
 .footer-links {
     display: grid;
-    grid-template-columns: repeat(2, auto);
-    gap: 80px;
-    justify-content: center;
-    text-align: center;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
 }
 
 .footer-column h4 {
@@ -1032,8 +1020,7 @@ body {
 
 .footer-bottom {
     display: flex;
-    flex-direction: column;
-    gap: 24px;
+    justify-content: space-between;
     align-items: center;
     padding-top: 40px;
     border-top: 1px solid rgba(250, 250, 250, 0.1);
@@ -1047,7 +1034,6 @@ body {
 .footer-legal {
     display: flex;
     gap: 24px;
-    justify-content: center;
 }
 
 .footer-legal a {
